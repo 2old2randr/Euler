@@ -1,0 +1,4 @@
+Common Lisp code for solving various problems from Project Euler.
+
+All code has been developed and tested on Clozure CL (Darwin PPC
+and X86).
