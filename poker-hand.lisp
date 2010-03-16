@@ -77,7 +77,7 @@ form (pip . suit) where the pips are card face values (ace = 14, king = 13 etc)"
 (defun evaluate-hand (hand)
   "Return a list containing the class of hand followed by tie-breaking pip cards.
 Suit information is discarded since suits are not ranked in poker. The returned list
-will have different lengths as a result, e.g. (:straight 8), (:full-house 14 5), etc."
+will have different lengths as a result, e.g. (+straight+ 8), (+full-house+ 14 5), etc."
   (let* ((flush (flushp hand))
 	 (hand (sort (mapcar #'car hand) #'>)) ; suit info can be discarded after checking for flush
 	 (straight (straightp hand)))
@@ -87,14 +87,14 @@ will have different lengths as a result, e.g. (:straight 8), (:full-house 14 5),
 	  (t (pairs/high-card hand)))))
 
 (defun flushp (cards)
-  "Returns (:flush high-card) if all cards are of the same suit"
+  "Returns (+flush+ high-card) if all cards are of the same suit"
   (let ((suit (cdr (first cards))))
     (if (every (lambda(c) (eq (cdr c) suit)) cards)
 	(list +flush+ (loop for card in cards maximizing (car card)))
 	nil)))
 
 (defun straightp (cards)
-  "Returns (:straight high-card) if cards are in a sequence, including A-2-3-4-5.
+  "Returns (+straight+ high-card) if cards are in a sequence, including A-2-3-4-5.
 Cards are assumed to be in descending sorted order"
   (cond ((equal cards '(14 5 4 3 2)) (list +straight+ 5)) ; special case
 	((and (apply #'> cards)	 ; check no duplicates
