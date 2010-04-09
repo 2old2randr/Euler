@@ -19,6 +19,8 @@
 	   #:generate-primes
 	   #:factorize
 	   #:binomial
+	   #:combinations
+	   #:permutations
 	   #:permutation-p
 	   #:palindrome-p
 	   #:pandigital-p
@@ -118,6 +120,24 @@
     (dotimes (i (min k (- n k)))
       (setf nck (* nck (/ (- n i) (1+ i)))))
     nck))
+
+(defun combinations (list num)
+  "Return all unique combinations of num elements from given list.
+Length of the returned list will be (binomial (length list) num)"
+  (cond ((< (length list) num) nil)
+	((= num 1) (mapcar #'list list))
+	(t (nconc (mapcar (lambda (x) (cons (car list) x))  (combinations (cdr list) (1- num)))
+		  (combinations (cdr list) num)))))
+
+(defun permutations (list)
+  "Return a list of all permutations of the given list"
+  (if (null list)
+      (list nil)
+      (mapcan #'(lambda (first)
+		  (mapcar #'(lambda (rest)
+			      (cons first rest))
+			  (permutations (remove first list :count 1 :test #'eq))))
+	      list)))
 
 (defun permutation-p (n1 n2)
   "Return true if digits of two numbers are permutations of each other"
