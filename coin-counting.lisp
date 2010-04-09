@@ -1,4 +1,5 @@
 ;;;; Counting problems (Project Euler 76 and 77)
+;;;; - Sudhir Shenoy, April 2010.
 ;;;;
 ;;;; This class of problems involves finding combinations of integers
 ;;;; from a given set that add up to a given sum (repeated integers

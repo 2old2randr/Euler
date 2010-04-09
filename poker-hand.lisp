@@ -1,4 +1,5 @@
 ;;;; poker-hand.lisp - Evaluate who wins given two hands in 5-card poker.
+;;;; - Sudhir Shenoy, April 2010.
 ;;;;
 ;;;; In the card game poker, a hand consists of five cards and are ranked,
 ;;;; from lowest to highest, in the following way:

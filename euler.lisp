@@ -8,6 +8,8 @@
 ;;;; the individual digits of an integer, testing for primality, generating
 ;;;; prime numbers, etc.
 ;;;;
+;;;; Sudhir Shenoy, April 2010.
+;;;;
 ;;;;--------------------------------------------------------------------------
 
 (defpackage #:euler
