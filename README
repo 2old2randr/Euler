@@ -1,4 +1,17 @@
 Common Lisp code for solving various problems from Project Euler.
 
-All code has been developed and tested on Clozure CL (Darwin PPC
-and X86).
+By and large, solutions to individual problems are found in separate
+files. I have posted code to solve only 'interesting' problems, i.e.,
+either where the code size is more than a few lines or where even
+though the problem looks simple, few people have solved it (such as
+problem 90).
+
+"euler.lisp" contains general purpose functions that can be used to
+solve several of the problems in Project Euler. For example, there are
+functions to retrieve the digits of an integer, enumerate combinations
+of 'k' elements from a set of size 'n', etc.
+
+All code has been developed and tested on Clozure CL (Darwin PPC and
+X86) and should run on any Common Lisp implementation.
+
+--- Sudhir Shenoy, April 2010.
