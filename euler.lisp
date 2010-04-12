@@ -84,11 +84,9 @@
 		       (step (1+ (* 2 i))))
 		   (loop for j from start to sieve-bound by step
 			 do (setf (aref nums j) 1))))
-	(let ((primes (loop for i from 1 to sieve-bound
-			    when (= 0 (aref nums i))
-			    collect (1+ (* 2 i)))))
-	  (push 2 primes)
-	  primes))))
+	(cons 2 (loop for i from 1 to sieve-bound
+		      when (= 0 (aref nums i))
+		      collect (1+ (* 2 i)))))))
 
 (defun factorize (num &optional (only-primes nil))
   "Return the prime factors of an integer and (optionally) the power to which it should be raised"
