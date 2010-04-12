@@ -76,13 +76,17 @@
   "Generate list of all prime numbers below limit"
   (if (< limit 2)
       nil
-      (let ((nums (make-array (1+ limit))))
-	(loop for i from 3 to limit do
-	      (loop for j from (+ i i) to limit by i do
-		    (setf (aref nums j) 1)))
-	(let ((primes (loop for i from 3 to limit by 2
+      (let* ((sieve-bound (truncate (* 1/2 (1- limit))))
+	     (nums (make-array (1+ sieve-bound) :element-type 'bit)))
+	(loop for i from 1 to sieve-bound
+	      when (zerop (aref nums i))
+	      do (let ((start (* 2 i (1+ i)))
+		       (step (1+ (* 2 i))))
+		   (loop for j from start to sieve-bound by step
+			 do (setf (aref nums j) 1))))
+	(let ((primes (loop for i from 1 to sieve-bound
 			    when (= 0 (aref nums i))
-			    collect i)))
+			    collect (1+ (* 2 i)))))
 	  (push 2 primes)
 	  primes))))
 
